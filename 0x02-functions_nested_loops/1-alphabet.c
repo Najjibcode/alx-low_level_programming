@@ -1,21 +1,17 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * main - check the code
- * Return : Always 0
+ * print_alphabet - prints the english alphabet from a-z.
+ * Return: Nothing.
  */
+
 void print_alphabet(void)
-{
-	char vow;
 
-	for (vow = 'a'; vow <= 'z'; vow++)
-	{
-		putchar(vow);
-	}
+{
+char c;
+for (c = 'a'; c <= 'z'; c++)
+{
+_putchar(c);
 }
-
-int main(void)
-{
-	print_alphabet();
-	return (0);
+_putchar('\n');
 }
