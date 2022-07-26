@@ -1,65 +1,36 @@
-#include <stdio.h>
 #include "main.h"
 
 /**
- * _strlen - length of a string
- * @s: input char
- * Return: length of a string
- */
-
-int _strlen(char *s)
-{
-	int l = 0;
-
-	while (*s != '\0')
-	{
-		s++;
-		l++;
-	}
-	return (l);
-}
-
-/**
- * argstostr - concat
- * @ac: count
- * @av: vector
- * Return: string
+ * argstostr - concatenate all arguments into a new string
+ * @ac: the argument count
+ * @av: the argument vector
+ * Return: NULL memory allocation fails, ac is 0 or av is NULL,
+ * otherwise return a pointer to the new string
  */
 
 char *argstostr(int ac, char **av)
+
 {
-	int i, j, k;
-	int len, R = 0;
-	char *p;
 
-	if (!ac || !av)
-	{
-		return (NULL);
-	}
-	R = 0;
+char *cat, *chr;
+int arg, size;
 
-	for (i = 0; i < ac; i++)
-	{
-		len = _strlen(av[i]) + 1;
-		R += len;
-	}
-	p = malloc(sizeof(char) * R + 1);
-
-	if (!p)
-	{
-		return (NULL);
-	}
-
-	for (i = 0; i < ac; i++)
-	{
-		len = _strlen(av[i]);
-
-		for (j = 0; j < len; j++, k++)
-		{
-			p[k] = av[i][j];
-		}
-		p[k++] = '\n';
-	}
-	p[k] = '\0';
-	return (p);
+if (!ac || !av)
+return (NULL);
+for (arg = 0, size = 1; arg < ac; ++arg, ++size)
+{
+for (chr = av[arg]; *chr; ++chr, ++size)
+;
+}
+cat = (char *) malloc(sizeof(char) * size);
+if (!cat)
+return (NULL);
+for (arg = 0, size = 0; arg < ac; ++arg, ++size)
+{
+for (chr = av[arg]; *chr; ++chr, ++size)
+cat[size] = *chr;
+cat[size] = '\n';
+}
+cat[size] = '\0';
+return (cat);
 }
